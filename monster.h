@@ -6,7 +6,7 @@ private:
 	string name;
 	int hp,potion;
 public:
-	void Attack(moster &);
+	void Attack(monster &);
           void heal();
 	monster(string, int,int);
 };
