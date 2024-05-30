@@ -1,39 +1,22 @@
 #include <iostream>
 using namespace std;
 
-#include "Thanos.h"
+#include "monster.h"
 
 int main(int argc, char* argv[]) {
-Thanos T;
-  int n;
-  cout<<"How many monster?";
-  cin>>n;
+  //1. Your monster
+  monster YOU(argv[1],atoi(argv[2]),atoi(argv[3]);
 
-  monster *m=new monster[n]; //2. make sure they have hp
- 
-  /* Add some story Attack each other or 
-
-  add hp to some of them randomly
-*/
-
-  ++T;
-  ++T;
-  T.snap_finger(m,n); //finish the snap finger function
-  ++T;
-  ++T;
-  T.snap_finger(m,n);
-  ++T;
-  ++T;
-  T.snap_finger(m,n);
-
+ //2 other monster
   int i;
-  for(i=0;i<n;i++)
-      m[i].print();
-  
-  delete [] m;
-  
-  
+  for(/* finish the for loop*/){
+        monster *p=new monster(argv[i],atoi(argv[i+1]),atoi(argv[i+2]);  
+         //fight each other 
 
+      delete p;
+      You.heal();
+  }
+  
 }//call des for A
   
   
