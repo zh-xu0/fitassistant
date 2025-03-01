@@ -1,26 +1,23 @@
-#ifndef meat.h
-#define meat.h
+#ifndef CARBS_H
+#define CARBS_H
 
-class meat{
+#include <iostream>
+#include <string>
+
+class carbs {
 private:
-	string name; //ingredient
-	float protein, calories;
+    std::string name;
+    float protein, calories;
 public:
-	void set_all(string n, float c, float p);
-	void print_all();
+    carbs(std::string n = "", float c = 0.0, float p = 0.0) : name(n), calories(c), protein(p) {}
+
+    float get_calories() const { return calories; }
+    float get_protein() const { return protein; }
+    std::string get_name() const { return name; }
+
+    void print_all() {
+        std::cout << "Name: " << name << ", Calories: " << calories << ", Protein: " << protein << std::endl;
+    }
 };
 
-void meat::meat(string n, float c, float p) {
-	name=n;
-	calories=c;
-	protein=p;
-  }
-
-  //Ingredient carbs
-  ("Bread", 265.0, 9.0)
-  ("Brown Rice", 362.0, 7.0)
-  ("Egg Noodles", 138.0, 5.0)
-  ("Jasmine Rice", 365.0, 7.0)
-  ("Oats", 389.0, 16.0)
-  ("Spaghetti", 158.0, 6.0)
-  ("Udon", 127.0, 3.0)
+#endif
