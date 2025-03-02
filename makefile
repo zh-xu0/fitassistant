@@ -1,4 +1,4 @@
-DEPS=FitAssitant
+DEPS=FitAssistant
 compile: main.cpp 
 	 g++ main.cpp -o $(DEPS)
 
