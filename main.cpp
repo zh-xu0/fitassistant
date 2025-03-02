@@ -9,7 +9,7 @@ using namespace std;
 #include "insertion.h"
 #include "functions.h"
 
-#define SIZE 9 // Fixed macro definition
+#define SIZE 9
 
 
 int main(int argc, char* argv[]) {
@@ -61,9 +61,9 @@ int main(int argc, char* argv[]) {
         string carb_choice = argv[4];
         string veg_choice = argv[6];
     
-        int meatQty = stoi(argv[3]) * 100; // Initial meat quantity
-        int carbQty = stoi(argv[5]) * 100; // Initial carb quantity
-        int vegQty = stoi(argv[7]) * 100;  // Initial vegetable quantity
+        int meatQty = stoi(argv[3]) * 100;
+        int carbQty = stoi(argv[5]) * 100;
+        int vegQty = stoi(argv[7]) * 100;
     
         meat selectedMeat;
         carbs selectedCarb;

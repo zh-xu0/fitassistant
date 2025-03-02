@@ -6,18 +6,15 @@
 
 class meat {
 private:
-    string name; // ingredient
+    string name;
     float protein, calories;
 public:
-    // Constructor
     meat(string n = "", float c = 0.0, float p = 0.0) : name(n), calories(c), protein(p) {}
 
-    // Getter functions
     float get_calories() const { return calories; }
     float get_protein() const { return protein; }
     string get_name() const { return name; }
-
-    // Display function
+    
     void print_all() {
         cout << "Name: " << name << ", Calories: " << calories << ", Protein: " << protein << endl;
     }

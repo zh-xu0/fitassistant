@@ -88,7 +88,7 @@ void increasePortion(meat& m, carbs& c, vegetables& v, int& meatQty, int& carbQt
             if (ingredient == "meat") {
                 meatQty += portionIncrease;
                 total_protein += (portionIncrease / 100.0) * m.get_protein();
-                total_calories += (portionIncrease / 100.0) * m.get_calories(); // Add calories for 100g
+                total_calories += (portionIncrease / 100.0) * m.get_calories();
                 cout << "Increased meat portion by 100g. New portion size: " << meatQty << "g" << endl;
             } else if (ingredient == "carbs") {
                 carbQty += portionIncrease;
