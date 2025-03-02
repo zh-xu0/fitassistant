@@ -3,12 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include <cstdlib> // for std::stoi
+#include <cstdlib>
 #include "meat.h"
 #include "carbs.h"
 #include "vegetables.h"
-
-using namespace std;
 
 // Function to create a meal from user input
 void createMeal(int argc, char* argv[], meat meats[], int meatSize, carbs carblist[], int carbSize, vegetables veglist[], int vegSize) {
@@ -72,6 +70,50 @@ void createMeal(int argc, char* argv[], meat meats[], int meatSize, carbs carbli
     cout << "Total Macronutrients:" << endl;
     cout << "Protein: " << total_protein << "g" << endl;
     cout << "Calories: " << total_calories << " kcal" << endl;
+}
+
+void increasePortion(meat& m, carbs& c, vegetables& v, int& meatQty, int& carbQty, int& vegQty, double& total_protein, double& total_calories) {
+    string choice;
+    int portionIncrease = 100; // Increase by 100g
+
+    while (true) {
+        cout << "Do you want to increase the portion size of an ingredient? (yes/no): ";
+        cin >> choice;
+
+        if (choice == "yes") {
+            cout << "Which ingredient do you want to increase? (meat/carbs/vegetables): ";
+            string ingredient;
+            cin >> ingredient;
+
+            if (ingredient == "meat") {
+                meatQty += portionIncrease;
+                total_protein += (portionIncrease / 100.0) * m.get_protein();
+                total_calories += (portionIncrease / 100.0) * m.get_calories(); // Add calories for 100g
+                cout << "Increased meat portion by 100g. New portion size: " << meatQty << "g" << endl;
+            } else if (ingredient == "carbs") {
+                carbQty += portionIncrease;
+                total_protein += (portionIncrease / 100.0) * c.get_protein();
+                total_calories += (portionIncrease / 100.0) * c.get_calories();
+                cout << "Increased carbs portion by 100g. New portion size: " << carbQty << "g" << endl;
+            } else if (ingredient == "vegetables") {
+                vegQty += portionIncrease;
+                total_protein += (portionIncrease / 100.0) * v.get_protein();
+                total_calories += (portionIncrease / 100.0) * v.get_calories();
+                cout << "Increased vegetables portion by 100g. New portion size: " << vegQty << "g" << endl;
+            } else {
+                cout << "Invalid ingredient choice. Please try again." << endl;
+            }
+
+            // Print updated totals
+            cout << "\nUpdated Meal Macronutrients:" << endl;
+            cout << "Total Protein: " << total_protein << "g" << endl;
+            cout << "Total Calories: " << total_calories << " kcal" << endl;
+        } else if (choice == "no") {
+            break;
+        } else {
+            cout << "Invalid input. Please enter 'yes' or 'no'." << endl;
+        }
+    }
 }
 
 #endif

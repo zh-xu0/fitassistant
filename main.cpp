@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 #include "meal.h"
 #include "meat.h"
 #include "carbs.h"
@@ -9,7 +11,6 @@
 
 #define SIZE 9 // Fixed macro definition
 
-using namespace std;
 
 int main(int argc, char* argv[]) {
     meat* meats = new meat[SIZE]{
@@ -54,6 +55,53 @@ int main(int argc, char* argv[]) {
 
     if (action == "meal") {
         createMeal(argc, argv, meats, SIZE, carblist, SIZE, veglist, SIZE);
+    
+        // Find the selected ingredients
+        string meat_choice = argv[2];
+        string carb_choice = argv[4];
+        string veg_choice = argv[6];
+    
+        int meatQty = stoi(argv[3]) * 100; // Initial meat quantity
+        int carbQty = stoi(argv[5]) * 100; // Initial carb quantity
+        int vegQty = stoi(argv[7]) * 100;  // Initial vegetable quantity
+    
+        meat selectedMeat;
+        carbs selectedCarb;
+        vegetables selectedVeg;
+    
+        for (int i = 0; i < SIZE; i++) {
+            if (meats[i].get_name() == meat_choice) {
+                selectedMeat = meats[i];
+                break;
+            }
+        }
+    
+        for (int i = 0; i < SIZE; i++) {
+            if (carblist[i].get_name() == carb_choice) {
+                selectedCarb = carblist[i];
+                break;
+            }
+        }
+    
+        for (int i = 0; i < SIZE; i++) {
+            if (veglist[i].get_name() == veg_choice) {
+                selectedVeg = veglist[i];
+                break;
+            }
+        }
+    
+        // Calculate initial totals
+        double total_protein = (meatQty / 100.0) * selectedMeat.get_protein() +
+                               (carbQty / 100.0) * selectedCarb.get_protein() +
+                               (vegQty / 100.0) * selectedVeg.get_protein();
+    
+        double total_calories = (meatQty / 100.0) * selectedMeat.get_calories() +
+                                (carbQty / 100.0) * selectedCarb.get_calories() +
+                                (vegQty / 100.0) * selectedVeg.get_calories();
+    
+        // Allow the user to increase portion sizes
+        increasePortion(selectedMeat, selectedCarb, selectedVeg, meatQty, carbQty, vegQty, total_protein, total_calories);
+
     } else if (action == "order") {
         string order = argv[2];
         string type = argv[3];
