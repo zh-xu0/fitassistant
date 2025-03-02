@@ -1,9 +1,11 @@
 #include <iostream>
-#include <algorithm>
+
 #include "meal.h"
 #include "meat.h"
 #include "carbs.h"
 #include "vegetables.h"
+#include "insertion.h"
+#include "functions.h"
 
 #define SIZE 9 // Fixed macro definition
 
@@ -41,7 +43,9 @@ int main(int argc, char* argv[]) {
         {"Jasmine Rice", 365.0, 7.0},
         {"Oats", 389.0, 16.0},
         {"Spaghetti", 158.0, 6.0},
-        {"Udon", 127.0, 3.0}
+        {"Udon", 127.0, 3.0},
+        {"White Rice", 350.0, 6.0},
+        {"Black Rice", 365.5, 8.0}
     };
 
     // Terminal work FitAssistant
@@ -57,25 +61,25 @@ int main(int argc, char* argv[]) {
 
         if (order == "ascending") { // Order from lowest to highest
             if (type == "protein") {
-                sort(meats, meats + SIZE, [](const meat& a, const meat& b) {
-                    return a.get_protein() < b.get_protein();
-                });
+                sortMeats(meats, SIZE, order, type);
+                sortVegetables(veglist, SIZE, order, type);
+                sortCarbs(carblist, SIZE, order, type);
             } else if (type == "calories") {
-                sort(meats, meats + SIZE, [](const meat& a, const meat& b) {
-                    return a.get_calories() < b.get_calories();
-                });
+                sortMeats(meats, SIZE, order, type);
+                sortVegetables(veglist, SIZE, order, type);
+                sortCarbs(carblist, SIZE, order, type);
             } else {
                 cout << "Error, wrong type of ingredient input" << endl;
             }
         } else if (order == "descending") {  // Order from highest to lowest
             if (type == "protein") {
-                sort(meats, meats + SIZE, [](const meat& a, const meat& b) {
-                    return a.get_protein() > b.get_protein();
-                });
+                sortMeats(meats, SIZE, order, type);
+                sortVegetables(veglist, SIZE, order, type);
+                sortCarbs(carblist, SIZE, order, type);
             } else if (type == "calories") {
-                sort(meats, meats + SIZE, [](const meat& a, const meat& b) {
-                    return a.get_calories() > b.get_calories();
-                });
+                sortMeats(meats, SIZE, order, type);
+                sortVegetables(veglist, SIZE, order, type);
+                sortCarbs(carblist, SIZE, order, type);
             } else {
                 cout << "Error, wrong type of ingredient input" << endl;
             }
@@ -84,11 +88,21 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Print sorted results
-    cout << "\nSorted Ingredients:\n";
-    for (int i = 0; i < SIZE; i++) {
-        meats[i].print_all();
-    }
+     // Print sorted results
+     cout << "\nSorted Meats:\n";
+     for (int i = 0; i < SIZE; i++) {
+         meats[i].print_all();
+     }
+ 
+     cout << "\nSorted Vegetables:\n";
+     for (int i = 0; i < SIZE; i++) {
+         veglist[i].print_all();
+     }
+ 
+     cout << "\nSorted Carbs:\n";
+     for (int i = 0; i < SIZE; i++) {
+         carblist[i].print_all();
+     }
 
     delete[] meats;
     delete[] veglist;
