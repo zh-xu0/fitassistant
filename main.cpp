@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 
     vegetables* veglist = new vegetables[SIZE]{
         {"Basil", 23.0, 3.0},
-        {"Bell Peppers", 31.0, 1.0},
+        {"Bell_Peppers", 31.0, 1.0},
         {"Broccoli", 55.0, 3.0},
         {"Carrots", 41.0, 1.0},
         {"Cauliflower", 25.0, 2.0},
@@ -38,14 +38,14 @@ int main(int argc, char* argv[]) {
 
     carbs* carblist = new carbs[SIZE]{
         {"Bread", 265.0, 9.0},
-        {"Brown Rice", 362.0, 7.0},
-        {"Egg Noodles", 138.0, 5.0},
-        {"Jasmine Rice", 365.0, 7.0},
+        {"Brown_Rice", 362.0, 7.0},
+        {"Egg_Noodles", 138.0, 5.0},
+        {"Jasmine_Rice", 365.0, 7.0},
         {"Oats", 389.0, 16.0},
-        {"Spaghetti", 158.0, 6.0},
+        {"Pasta", 158.0, 6.0},
         {"Udon", 127.0, 3.0},
-        {"White Rice", 350.0, 6.0},
-        {"Black Rice", 365.5, 8.0}
+        {"White_Rice", 350.0, 6.0},
+        {"Black_Rice", 365.5, 8.0}
     };
 
     // Terminal work FitAssistant
@@ -53,8 +53,7 @@ int main(int argc, char* argv[]) {
     cout << "Welcome to Fit Assistant Ver.2" << endl;
 
     if (action == "meal") {
-        //cout << "\nCreating your meal\n";
-       // meal(meats, SIZE);
+        createMeal(argc, argv, meats, SIZE, carblist, SIZE, veglist, SIZE);
     } else if (action == "order") {
         string order = argv[2];
         string type = argv[3];
@@ -89,6 +88,7 @@ int main(int argc, char* argv[]) {
     }
 
      // Print sorted results
+     if (action == "order"){
      cout << "\nSorted Meats:\n";
      for (int i = 0; i < SIZE; i++) {
          meats[i].print_all();
@@ -103,6 +103,7 @@ int main(int argc, char* argv[]) {
      for (int i = 0; i < SIZE; i++) {
          carblist[i].print_all();
      }
+    }
 
     delete[] meats;
     delete[] veglist;
