@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -8,6 +9,9 @@ using namespace std;
 #include "vegetables.h"
 #include "insertion.h"
 #include "functions.h"
+#include "stack.h"
+#include "node.h"
+#include "BST.h"
 
 #define SIZE 9
 
@@ -51,7 +55,7 @@ int main(int argc, char* argv[]) {
 
     // Terminal work FitAssistant
     string action = argv[1];
-    cout << "Welcome to Fit Assistant Ver.2" << endl;
+    cout << "Welcome to Fit Assistant -Ver.2-  Ver.3!!" << endl;
 
     if (action == "meal") {
         createMeal(argc, argv, meats, SIZE, carblist, SIZE, veglist, SIZE);
@@ -133,7 +137,69 @@ int main(int argc, char* argv[]) {
         } else {
             cout << "Error, wrong order input" << endl;
         }
-    }
+    }else if (action == "workout") { // Workout section
+        WorkoutStack workoutHistory;
+        string input;
+        int choice = -1;
+        
+        cout << "\n=== Workout Tracker ===" << endl;
+        cout << "1. Add workout\n2. Undo last\n3. View history\n0. Exit\n" << endl;
+
+        while(true) {
+            cout << "Enter choice: ";
+            getline(cin, input);
+            stringstream ss(input);
+            ss >> choice;
+
+            if(choice == 0) {
+                cout << "Exiting workout tracker..." << endl;
+                break;
+            }
+
+            switch(choice) {
+                case 1: { // Add workout
+                    double calories;
+                    cout << "Enter calories burned: ";
+                    getline(cin, input);
+                    try {
+                        calories = stod(input);
+                        workoutHistory.push(calories);
+                        cout << "Added: " << calories << " calories" << endl;
+                    } catch(...) {
+                        cout << "Invalid input! Use numbers only." << endl;
+                    }
+                    break;
+                }
+                case 2: // Undo
+                    if(!workoutHistory.isEmpty()) {
+                        workoutHistory.pop();
+                        cout << "Undid last workout entry" << endl;
+                    } else {
+                        cout << "History is already empty!" << endl;
+                    }
+                    break;
+                case 3: // History
+                    cout << "\n=== Workout History (" << workoutHistory.getStreak() << " workout streak) ===" << endl;
+                    workoutHistory.displayHistory();
+                    cout << endl;
+                    break;
+                default:
+                    cout << "Invalid choice! Valid options: 0-3" << endl;
+            }
+        }
+        return 0;
+    }else if (action == "search") {
+        BST bst;
+        for (int i = 0; i < SIZE; i++) {
+            bst.insert(meats[i].get_name(), meats[i].get_calories());
+            bst.insert(veglist[i].get_name(), veglist[i].get_calories());
+            bst.insert(carblist[i].get_name(), carblist[i].get_calories());
+        }
+        double minCalories = stod(argv[2]);
+        double maxCalories = stod(argv[3]);
+        bst.searchByCalories(minCalories, maxCalories);
+        }
+    
 
      // Print sorted results
      if (action == "order"){
