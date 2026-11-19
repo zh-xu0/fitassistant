@@ -1,0 +1,5 @@
+# Build outputs
+FitAssistant
+a.out
+*.o
+*.out
