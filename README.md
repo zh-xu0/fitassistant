@@ -131,7 +131,7 @@ make meal2     # sample intentionally misspelled meal
 | `stack.h`, `node.h` | Linked-list stack for workout history |
 | `makefile` | Build and sample-command targets |
 | `FitAssistant v2.pdf` | Written project report |
-| `FitAssistant_v2_videolink` | Link to the video demonstration |
+| `LICENSE` | MIT license for the source code |
 
 ## Known limitations
 
@@ -140,13 +140,15 @@ make meal2     # sample intentionally misspelled meal
 - There is no validation of the number of command-line arguments.
 - The `workout` command exits before freeing the dynamically allocated ingredient arrays.
 
-## Report and demo
+## Report
 
 The complete written report is included in this repository:
 [FitAssistant v2.pdf](FitAssistant%20v2.pdf).
 
-A video demonstration is available through the Google Drive link in
-[FitAssistant_v2_videolink](FitAssistant_v2_videolink).
+## License
+
+The source code is released under the [MIT License](LICENSE). The written report is
+included for reference; copyright in the report remains with its authors.
 
 ## Project context and team
 
